@@ -1,0 +1,62 @@
+﻿@model HospitalRecruitmentSystem.Models.JobOffer
+
+<h2>Create Job Offer</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label>Candidate Name</label>
+        <select asp-for="CandidateId"
+                asp-items="ViewBag.CandidateId"
+                class="form-select">
+            <option value="">Select Candidate</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Offered Salary (Annual)</label>
+        <input asp-for="OfferedSalary"
+               type="number"
+               step="0.01"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Offer Date</label>
+        <input asp-for="OfferDate"
+               type="date"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Joining Date</label>
+        <input asp-for="JoiningDate"
+               type="date"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Offer Status</label>
+        <select asp-for="OfferStatus" class="form-select">
+            <option value="Pending">Pending</option>
+            <option value="Accepted">Accepted</option>
+            <option value="Rejected">Rejected</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Remarks</label>
+        <textarea asp-for="Remarks"
+                  class="form-control"
+                  rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Save Job Offer
+    </button>
+
+    <a href="/JobOffers/Index" class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

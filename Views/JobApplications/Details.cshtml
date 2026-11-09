@@ -1,0 +1,35 @@
+﻿
+@model HospitalRecruitmentSystem.Models.JobApplication
+
+@{
+    ViewData["Title"] = "Application Details";
+}
+
+<h2>Job Application Details</h2>
+
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-3">Application Number</dt>
+    <dd class="col-sm-9">@Model.ApplicationNumber</dd>
+
+    <dt class="col-sm-3">Candidate Name</dt>
+    <dd class="col-sm-9">@Model.Candidate?.FullName</dd>
+
+    <dt class="col-sm-3">Job Position</dt>
+    <dd class="col-sm-9">@Model.JobVacancy?.JobTitle</dd>
+
+    <dt class="col-sm-3">Application Date</dt>
+    <dd class="col-sm-9">@Model.ApplicationDate.ToShortDateString()</dd>
+
+    <dt class="col-sm-3">Application Status</dt>
+    <dd class="col-sm-9">@Model.ApplicationStatus</dd>
+
+    <dt class="col-sm-3">Interview Status</dt>
+    <dd class="col-sm-9">@Model.InterviewStatus</dd>
+
+    <dt class="col-sm-3">HR Remarks</dt>
+    <dd class="col-sm-9">@Model.HRRemarks</dd>
+</dl>
+
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>

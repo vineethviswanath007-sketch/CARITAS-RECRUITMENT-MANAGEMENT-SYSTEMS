@@ -1,0 +1,63 @@
+﻿@model HospitalRecruitmentSystem.Models.JobOffer
+
+<div class="container mt-4">
+
+    <div class="text-center">
+        <h2>HOSPITAL NAME</h2>
+        <h4>EMPLOYMENT OFFER LETTER</h4>
+        <hr />
+    </div>
+
+    <p><strong>Date:</strong> @Model.OfferDate.ToString("dd-MM-yyyy")</p>
+
+    <p>Dear @Model.Candidate?.FullName,</p>
+
+    <p>
+        We are pleased to offer you employment with our hospital.
+        Based on your qualifications and interview performance,
+        we are offering you the position you applied for.
+    </p>
+
+    <p>
+        <strong>Designation:</strong>
+        @Model.Candidate?.AppliedPosition
+    </p>
+
+    <p>
+        <strong>Annual Salary:</strong>
+        ₹@Model.OfferedSalary.ToString("N2")
+    </p>
+
+    <p>
+        <strong>Joining Date:</strong>
+        @Model.JoiningDate?.ToString("dd-MM-yyyy")
+    </p>
+
+    <p>
+        <strong>Offer Status:</strong>
+        @Model.OfferStatus
+    </p>
+
+    <p>
+        We welcome you to our hospital and look forward to
+        a successful professional relationship.
+    </p>
+
+    <br />
+
+    <p>Regards,</p>
+
+    <p><strong>Human Resources Department</strong></p>
+    <p>Hospital Management</p>
+
+    <hr />
+
+    <button onclick="window.print()" class="btn btn-primary">
+        Print Offer Letter
+    </button>
+
+    <a href="/JobOffers/Index" class="btn btn-secondary">
+        Back
+    </a>
+
+</div>

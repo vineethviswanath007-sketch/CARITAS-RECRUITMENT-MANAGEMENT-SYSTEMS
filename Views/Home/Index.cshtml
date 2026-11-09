@@ -1,0 +1,273 @@
+﻿@{
+    ViewData["Title"] = "HR Recruitment Dashboard";
+}
+
+<style>
+    .dashboard-heading {
+        font-weight: 700;
+        color: #183153;
+    }
+
+    .stat-card {
+        border: none;
+        border-radius: 12px;
+        padding: 22px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+        height: 100%;
+    }
+
+    .stat-number {
+        font-size: 30px;
+        font-weight: 700;
+        margin-top: 12px;
+    }
+
+    .stat-label {
+        color: #6b7280;
+        font-size: 14px;
+    }
+
+    .dashboard-table {
+        background: white;
+        border-radius: 12px;
+        padding: 22px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    }
+
+    .module-card {
+        border: none;
+        border-radius: 12px;
+        padding: 22px;
+        height: 100%;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+        transition: transform 0.2s;
+    }
+
+        .module-card:hover {
+            transform: translateY(-4px);
+        }
+
+    .module-icon {
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+</style>
+
+<div class="container-fluid py-4">
+
+    <!-- Heading -->
+    <div class="mb-4">
+        <h2 class="dashboard-heading">
+            HR Recruitment Dashboard
+        </h2>
+
+        <p class="text-muted">
+            Hospital Human Resources Management System
+        </p>
+    </div>
+
+    <!-- Dashboard Statistics -->
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card stat-card">
+                <div class="stat-label">Open Vacancies</div>
+                <div class="stat-number text-primary">24</div>
+                <small class="text-muted">Active job openings</small>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card stat-card">
+                <div class="stat-label">Total Candidates</div>
+                <div class="stat-number text-success">186</div>
+                <small class="text-muted">Registered applicants</small>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card stat-card">
+                <div class="stat-label">Interviews Scheduled</div>
+                <div class="stat-number text-warning">32</div>
+                <small class="text-muted">Interview pipeline</small>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card stat-card">
+                <div class="stat-label">Candidates Joined</div>
+                <div class="stat-number text-info">9</div>
+                <small class="text-muted">Successfully onboarded</small>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Recruitment Pipeline -->
+    <div class="dashboard-table mt-4">
+
+        <h5 class="dashboard-heading mb-4">
+            Recruitment Pipeline
+        </h5>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+
+                <thead class="table-light">
+                    <tr>
+                        <th>Recruitment Stage</th>
+                        <th>Candidates</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Applications Received</td>
+                        <td>186</td>
+                        <td><span class="badge bg-primary">Received</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Shortlisted</td>
+                        <td>64</td>
+                        <td><span class="badge bg-info">Screening</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Interview</td>
+                        <td>32</td>
+                        <td><span class="badge bg-warning text-dark">In Progress</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Selected</td>
+                        <td>15</td>
+                        <td><span class="badge bg-success">Selected</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Joined</td>
+                        <td>9</td>
+                        <td><span class="badge bg-success">Completed</span></td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+        <small class="text-muted">
+            Note: All figures are sample data for demonstration.
+        </small>
+
+    </div>
+
+    <!-- HR Modules -->
+    <div class="mt-5">
+
+        <h4 class="dashboard-heading mb-4">
+            HR Management Modules
+        </h4>
+
+        <div class="row g-4">
+
+            <!-- Candidate Management -->
+            <div class="col-md-4">
+                <div class="card module-card">
+                    <div class="module-icon">👥</div>
+                    <h5>Candidate Management</h5>
+                    <p class="text-muted">
+                        Manage candidate profiles and applicant details.
+                    </p>
+                    <a asp-controller="Candidates" asp-action="Index"
+                       class="btn btn-outline-primary">
+                        Manage Candidates
+                    </a>
+                </div>
+            </div>
+
+            <!-- Job Vacancies -->
+            <div class="col-md-4">
+                <div class="card module-card">
+                    <div class="module-icon">📋</div>
+                    <h5>Job Vacancy Management</h5>
+                    <p class="text-muted">
+                        Create and manage hospital job openings.
+                    </p>
+                    <a asp-controller="JobVacancies" asp-action="Index"
+                       class="btn btn-outline-primary">
+                        Manage Vacancies
+                    </a>
+                </div>
+            </div>
+
+            <!-- Job Applications -->
+            <div class="col-md-4">
+                <div class="card module-card">
+                    <div class="module-icon">📄</div>
+                    <h5>Job Applications</h5>
+                    <p class="text-muted">
+                        Track and process candidate applications.
+                    </p>
+                    <a asp-controller="JobApplications" asp-action="Index"
+                       class="btn btn-outline-primary">
+                        View Applications
+                    </a>
+                </div>
+            </div>
+
+            <!-- Evaluation -->
+            <div class="col-md-4">
+                <div class="card module-card">
+                    <div class="module-icon">⭐</div>
+                    <h5>Interview Evaluation</h5>
+                    <p class="text-muted">
+                        Manage interview assessments and evaluations.
+                    </p>
+                    <a asp-controller="Evaluations" asp-action="Index"
+                       class="btn btn-outline-primary">
+                        Manage Evaluations
+                    </a>
+                </div>
+            </div>
+
+            <!-- Job Offers -->
+            <div class="col-md-4">
+                <div class="card module-card">
+                    <div class="module-icon">✉️</div>
+                    <h5>Job Offer Management</h5>
+                    <p class="text-muted">
+                        Manage selected candidates and job offers.
+                    </p>
+                    <a asp-controller="JobOffers" asp-action="Index"
+                       class="btn btn-outline-primary">
+                        Manage Job Offers
+                    </a>
+                </div>
+            </div>
+
+            <!-- Employee Onboarding -->
+            <div class="col-md-4">
+                <div class="card module-card">
+                    <div class="module-icon">🏥</div>
+                    <h5>Employee Onboarding</h5>
+                    <p class="text-muted">
+                        Manage employee registration, joining and verification.
+                    </p>
+
+                    <a asp-controller="Employees" asp-action="Dashboard"
+                       class="btn btn-primary mb-2">
+                        Onboarding Dashboard
+                    </a>
+
+                    <a asp-controller="Employees" asp-action="Index"
+                       class="btn btn-outline-primary">
+                        Manage Employees
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

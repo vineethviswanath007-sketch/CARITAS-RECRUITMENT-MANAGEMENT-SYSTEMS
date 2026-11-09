@@ -1,0 +1,70 @@
+﻿@model IEnumerable<HospitalRecruitmentSystem.Models.Interview>
+
+@{
+    ViewData["Title"] = "Interview Evaluation";
+}
+
+<h2>Interview Evaluation Management</h2>
+
+<p>Manage candidate interview evaluations and performance scores.</p>
+    <a asp-controller="Evaluations"
+   asp-action="Create"
+   class="btn btn-primary mb-3">
+    + Add New Interview Evaluation
+</a>
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary mb-3">
+    Back to Dashboard
+</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Interview ID</th>
+            <th>Candidate ID</th>
+            <th>Interview Date</th>
+            <th>Mode</th>
+            <th>Round</th>
+            <th>Technical Score</th>
+            <th>Communication Score</th>
+            <th>Overall Score</th>
+            <th>Result</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var interview in Model)
+            {
+                <tr>
+                    <td>@interview.Id</td>
+                    <td>@interview.CandidateId</td>
+                    <td>@interview.InterviewDate.ToString("dd-MM-yyyy")</td>
+                    <td>@interview.InterviewMode</td>
+                    <td>@interview.InterviewRound</td>
+                    <td>@interview.TechnicalKnowledgeScore</td>
+                    <td>@interview.CommunicationSkillsScore</td>
+                    <td>@interview.OverallPerformanceScore</td>
+                    <td>@interview.InterviewResult</td>
+                    <td>
+    <a asp-action="Edit"
+       asp-route-id="@interview.Id"
+       class="btn btn-warning btn-sm">
+        Edit
+    </a>
+</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="10" class="text-center">
+                    No interview evaluation records found.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

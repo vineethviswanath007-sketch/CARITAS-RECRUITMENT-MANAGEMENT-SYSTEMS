@@ -1,0 +1,223 @@
+﻿@model IEnumerable<HospitalRecruitmentSystem.Models.Department>
+
+@{
+    ViewData["Title"] = "Department Management";
+}
+
+<div class="container-fluid py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold">Department Management</h2>
+            <p class="text-muted">Manage all hospital departments</p>
+        </div>
+
+        <a asp-action="Create" class="btn btn-primary">
+            + Add Department
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+
+            <div class="row mb-3">
+
+                <div class="col-md-7 mb-2">
+                    <input type="text"
+                           id="departmentSearch"
+                           class="form-control"
+                           placeholder="Search department code, name or description..." />
+                </div>
+
+                <div class="col-md-3 mb-2">
+                    <select id="statusFilter" class="form-select">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2 mb-2">
+                    <button type="button"
+                            id="clearFilters"
+                            class="btn btn-outline-secondary w-100">
+                        Clear Filters
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle"
+                       id="departmentTable">
+
+                    <thead class="table-light">
+                        <tr>
+                            <th>Department Code</th>
+                            <th>Department Name</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Created Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr class="department-row"
+                                    data-status="@(item.IsActive ? "active" : "inactive")">
+
+                                    <td class="fw-semibold">
+                                        @item.DepartmentCode
+                                    </td>
+
+                                    <td>
+                                        @item.DepartmentName
+                                    </td>
+
+                                    <td>
+                                        @(item.Description ?? "-")
+                                    </td>
+
+                                    <td>
+                                        @if (item.IsActive)
+                                        {
+                                            <span class="badge bg-success">
+                                                Active
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">
+                                                Inactive
+                                            </span>
+                                        }
+                                    </td>
+
+                                    <td>
+                                        @item.CreatedOn.ToLocalTime().ToString("dd MMM yyyy")
+                                    </td>
+
+                                    <td>
+                                        <a asp-action="Details"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-sm btn-outline-info">
+                                            View
+                                        </a>
+
+                                        <a asp-action="Edit"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-sm btn-outline-primary">
+                                            Edit
+                                        </a>
+
+                                        <a asp-action="Delete"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-sm btn-outline-danger">
+                                            Delete
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="6"
+                                    class="text-center text-muted py-4">
+                                    No departments found.
+                                    Click Add Department to register one.
+                                </td>
+                            </tr>
+                        }
+
+                        <tr id="noResults" style="display:none;">
+                            <td colspan="6"
+                                class="text-center text-muted py-4">
+                                No matching departments found.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="text-muted small mt-2">
+                Total Departments: @(Model?.Count() ?? 0)
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const searchBox = document.getElementById("departmentSearch");
+            const statusFilter = document.getElementById("statusFilter");
+            const clearButton = document.getElementById("clearFilters");
+            const rows = document.querySelectorAll(".department-row");
+            const noResults = document.getElementById("noResults");
+
+            function filterDepartments() {
+
+                const searchValue = searchBox.value.toLowerCase().trim();
+                const selectedStatus = statusFilter.value;
+
+                let visibleCount = 0;
+
+                rows.forEach(function (row) {
+
+                    const rowText = row.innerText.toLowerCase();
+                    const rowStatus = row.dataset.status;
+
+                    const matchesSearch = rowText.includes(searchValue);
+
+                    const matchesStatus =
+                        selectedStatus === "" ||
+                        rowStatus === selectedStatus;
+
+                    if (matchesSearch && matchesStatus) {
+                        row.style.display = "";
+                        visibleCount++;
+                    }
+                    else {
+                        row.style.display = "none";
+                    }
+
+                });
+
+                noResults.style.display =
+                    rows.length > 0 && visibleCount === 0 ? "" : "none";
+            }
+
+            searchBox.addEventListener("input", filterDepartments);
+
+            statusFilter.addEventListener("change", filterDepartments);
+
+            clearButton.addEventListener("click", function () {
+
+                searchBox.value = "";
+                statusFilter.value = "";
+
+                filterDepartments();
+
+            });
+
+        });
+
+    </script>
+
+}

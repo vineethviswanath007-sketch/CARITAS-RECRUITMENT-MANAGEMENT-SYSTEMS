@@ -1,0 +1,42 @@
+﻿@model HospitalRecruitmentSystem.Models.JobVacancy
+
+@{
+    ViewData["Title"] = "Delete Job Vacancy";
+}
+
+<h2>Delete Job Vacancy</h2>
+
+<h4>Are you sure you want to delete this vacancy?</h4>
+
+<div class="card p-4">
+
+    <dl class="row">
+        <dt class="col-sm-3">Job Code</dt>
+        <dd class="col-sm-9">@Model.JobCode</dd>
+
+        <dt class="col-sm-3">Job Title</dt>
+        <dd class="col-sm-9">@Model.JobTitle</dd>
+
+        <dt class="col-sm-3">Department</dt>
+        <dd class="col-sm-9">@Model.Department?.DepartmentName</dd>
+
+        <dt class="col-sm-3">Qualification</dt>
+        <dd class="col-sm-9">@Model.Qualification</dd>
+
+        <dt class="col-sm-3">Vacancies</dt>
+        <dd class="col-sm-9">@Model.NumberOfVacancies</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <button type="submit" class="btn btn-danger">
+            Confirm Delete
+        </button>
+
+        <a asp-action="Index" class="btn btn-secondary">
+            Cancel
+        </a>
+    </form>
+
+</div>

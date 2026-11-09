@@ -1,0 +1,45 @@
+﻿@model HospitalRecruitmentSystem.Models.JobOffer
+
+@{
+    ViewData["Title"] = "Update Offer Status";
+}
+
+<div class="container mt-4">
+    <h2>Update Offer Status</h2>
+    <hr />
+
+    <p>
+        <strong>Candidate:</strong>
+        @Model.Candidate?.FullName
+    </p>
+
+    <p>
+        <strong>Offered Salary:</strong>
+        ₹@Model.OfferedSalary.ToString("N2")
+    </p>
+
+    <form asp-action="UpdateStatus" method="post">
+
+        <input type="hidden" name="id" value="@Model.Id" />
+
+        <div class="mb-3">
+            <label class="form-label">Offer Status</label>
+
+            <select name="offerStatus" class="form-select" required>
+                <option value="Pending">Pending</option>
+                <option value="Accepted">Accepted</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Withdrawn">Withdrawn</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Update Status
+        </button>
+
+        <a href="/JobOffers/Index" class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+</div>

@@ -1,0 +1,63 @@
+﻿@model HospitalRecruitmentSystem.Models.Interview
+
+<h2>Schedule Interview</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label>Candidate</label>
+        <select asp-for="CandidateId"
+                asp-items="ViewBag.CandidateId"
+                class="form-select">
+            <option value="">Select Candidate</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Interview Date and Time</label>
+        <input asp-for="InterviewDate"
+               type="datetime-local"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Interview Mode</label>
+        <select asp-for="InterviewMode" class="form-select">
+            <option value="Offline">Offline</option>
+            <option value="Online">Online</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Interview Round</label>
+        <select asp-for="InterviewRound" class="form-select">
+            <option value="HR">HR Round</option>
+            <option value="Technical">Technical Round</option>
+            <option value="Final">Final Round</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Interview Panel Members</label>
+        <input asp-for="InterviewPanel"
+               class="form-control"
+               placeholder="Enter interviewer names" />
+    </div>
+
+    <div class="mb-3">
+        <label>Interview Remarks</label>
+        <textarea asp-for="Remarks"
+                  class="form-control"
+                  rows="3"
+                  placeholder="Enter interview remarks"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Schedule Interview
+    </button>
+
+    <a href="/Interviews/Index" class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

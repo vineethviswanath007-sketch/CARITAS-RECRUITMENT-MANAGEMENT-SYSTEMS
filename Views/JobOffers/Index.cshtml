@@ -1,0 +1,51 @@
+﻿@model IEnumerable<HospitalRecruitmentSystem.Models.JobOffer>
+
+<h2>Job Offer Management</h2>
+
+<p>Manage selected candidates and job offers.</p>
+
+<a href="/JobOffers/Create" class="btn btn-primary">
+    Create Job Offer
+</a>
+
+<table class="table table-bordered mt-3">
+    <thead>
+       
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Candidate</th>
+            <th>Offered Salary</th>
+            <th>Offer Date</th>
+            <th>Joining Date</th>
+            <th>Offer Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Candidate?.FullName</td>
+                <td>@item.OfferedSalary</td>
+                <td>@item.OfferDate.ToString("dd-MM-yyyy")</td>
+                <td>@item.JoiningDate?.ToString("dd-MM-yyyy")</td>
+                <td>@item.OfferStatus</td>
+                <td>
+                    <div class="d-flex gap-2">
+                        <a href="/JobOffers/OfferLetter/@item.Id"
+                           class="btn btn-primary btn-sm">
+                            View Offer Letter
+                        </a>
+
+                        <a href="/JobOffers/UpdateStatus/@item.Id"
+                           class="btn btn-warning btn-sm">
+                            Update Status
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

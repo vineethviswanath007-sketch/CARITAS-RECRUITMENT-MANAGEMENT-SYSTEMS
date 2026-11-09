@@ -1,0 +1,48 @@
+﻿@model IEnumerable<HospitalRecruitmentSystem.Models.JobVacancy>
+
+<h2>Job Vacancy Management</h2>
+
+<p>
+    <a href="/JobVacancies/Create">Add Job Vacancy</a>
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Job Code</th>
+            <th>Job Title</th>
+            <th>Department</th>
+            <th>Qualification</th>
+            <th>Experience</th>
+            <th>Vacancies</th>
+            <th>Closing Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var job in Model)
+        {
+            <tr>
+                <td>@job.JobCode</td>
+                <td>@job.JobTitle</td>
+                <td>@job.Department?.DepartmentName</td>
+                <td>@job.Qualification</td>
+                <td>@job.ExperienceRequired</td>
+                <td>@job.NumberOfVacancies</td>
+                <td>@job.ClosingDate.ToString("dd-MM-yyyy")</td>
+                <td>@(job.IsActive ? "Active" : "Inactive")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@job.Id"
+                       class="btn btn-info btn-sm">Details</a>
+
+                    <a asp-action="Edit" asp-route-id="@job.Id"
+                       class="btn btn-primary btn-sm">Edit</a>
+
+                    <a asp-action="Delete" asp-route-id="@job.Id"
+                       class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

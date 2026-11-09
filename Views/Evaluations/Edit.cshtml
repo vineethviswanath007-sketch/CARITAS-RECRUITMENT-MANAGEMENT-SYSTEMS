@@ -1,0 +1,115 @@
+﻿@model HospitalRecruitmentSystem.Models.Interview
+
+@{
+    ViewData["Title"] = "Edit Interview Evaluation";
+}
+
+<h2>Edit Interview Evaluation</h2>
+
+<form asp-action="Edit" method="post">
+
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="row">
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="CandidateId">Candidate</label>
+            <select asp-for="CandidateId"
+                    asp-items="ViewBag.CandidateId"
+                    class="form-select">
+                <option value="">-- Select Candidate --</option>
+            </select>
+            <span asp-validation-for="CandidateId" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="InterviewDate">Interview Date</label>
+            <input asp-for="InterviewDate" type="date" class="form-control" />
+            <span asp-validation-for="InterviewDate" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="InterviewMode">Interview Mode</label>
+            <select asp-for="InterviewMode" class="form-select">
+                <option value="Offline">Offline</option>
+                <option value="Online">Online</option>
+                <option value="Telephonic">Telephonic</option>
+            </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="InterviewRound">Interview Round</label>
+            <select asp-for="InterviewRound" class="form-select">
+                <option value="HR">HR Round</option>
+                <option value="Technical">Technical Round</option>
+                <option value="Department Head">Department Head</option>
+                <option value="Final">Final Round</option>
+            </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="InterviewPanel">Interview Panel</label>
+            <input asp-for="InterviewPanel" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="TechnicalKnowledgeScore">Technical Knowledge Score</label>
+            <input asp-for="TechnicalKnowledgeScore" type="number"
+                   min="0" max="10" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="CommunicationSkillsScore">Communication Skills Score</label>
+            <input asp-for="CommunicationSkillsScore" type="number"
+                   min="0" max="10" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="OverallPerformanceScore">Overall Performance Score</label>
+            <input asp-for="OverallPerformanceScore" type="number"
+                   min="0" max="10" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="InterviewResult">Interview Result</label>
+            <select asp-for="InterviewResult" class="form-select">
+                <option value="Pending">Pending</option>
+                <option value="Selected">Selected</option>
+                <option value="Rejected">Rejected</option>
+                <option value="On Hold">On Hold</option>
+            </select>
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <label asp-for="InterviewerFeedback">Interviewer Feedback</label>
+            <textarea asp-for="InterviewerFeedback"
+                      class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <label asp-for="Evaluation">Evaluation Summary</label>
+            <textarea asp-for="Evaluation"
+                      class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <label asp-for="Remarks">Remarks</label>
+            <textarea asp-for="Remarks"
+                      class="form-control" rows="2"></textarea>
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Evaluation</button>
+
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

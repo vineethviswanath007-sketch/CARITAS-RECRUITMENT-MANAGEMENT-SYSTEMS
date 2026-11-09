@@ -1,0 +1,89 @@
+﻿
+@model HospitalRecruitmentSystem.Models.JobVacancy
+
+@{
+    ViewData["Title"] = "Edit Job Vacancy";
+}
+
+<h2>Edit Job Vacancy</h2>
+
+<form asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="JobCode"></label>
+        <input asp-for="JobCode" class="form-control" />
+        <span asp-validation-for="JobCode" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="JobTitle"></label>
+        <input asp-for="JobTitle" class="form-control" />
+        <span asp-validation-for="JobTitle" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Hospital Department</label>
+        <select asp-for="DepartmentId"
+                asp-items="ViewBag.DepartmentId"
+                class="form-control">
+            <option value="">-- Select Department --</option>
+        </select>
+        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="JobDescription"></label>
+        <textarea asp-for="JobDescription" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Qualification"></label>
+        <input asp-for="Qualification" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ExperienceRequired"></label>
+        <input asp-for="ExperienceRequired" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NumberOfVacancies"></label>
+        <input asp-for="NumberOfVacancies" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="EmploymentType"></label>
+        <select asp-for="EmploymentType" class="form-control">
+            <option value="Full-Time">Full-Time</option>
+            <option value="Part-Time">Part-Time</option>
+            <option value="Contract">Contract</option>
+            <option value="Temporary">Temporary</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SalaryRange"></label>
+        <input asp-for="SalaryRange" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="PostedDate"></label>
+        <input asp-for="PostedDate" type="date" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ClosingDate"></label>
+        <input asp-for="ClosingDate" type="date" class="form-control" />
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="IsActive" class="form-check-input" />
+        <label asp-for="IsActive" class="form-check-label">Active Vacancy</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Vacancy</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+</form>

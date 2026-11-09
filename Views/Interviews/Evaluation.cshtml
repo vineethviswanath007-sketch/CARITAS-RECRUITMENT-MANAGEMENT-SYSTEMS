@@ -1,0 +1,55 @@
+﻿@model HospitalRecruitmentSystem.Models.Interview
+
+<h2>Interview Evaluation</h2>
+
+<form asp-action="Evaluation" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label>Technical Knowledge (1-10)</label>
+        <input asp-for="TechnicalKnowledgeScore"
+               type="number" min="1" max="10"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Communication Skills (1-10)</label>
+        <input asp-for="CommunicationSkillsScore"
+               type="number" min="1" max="10"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Overall Performance (1-10)</label>
+        <input asp-for="OverallPerformanceScore"
+               type="number" min="1" max="10"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Interviewer Feedback</label>
+        <textarea asp-for="InterviewerFeedback"
+                  class="form-control"
+                  rows="4"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label>Interview Result</label>
+        <select asp-for="InterviewResult" class="form-select">
+            <option value="Pending">Pending</option>
+            <option value="Selected">Selected</option>
+            <option value="Rejected">Rejected</option>
+            <option value="On Hold">On Hold</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Save Evaluation
+    </button>
+
+    <a href="/Interviews/Index" class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

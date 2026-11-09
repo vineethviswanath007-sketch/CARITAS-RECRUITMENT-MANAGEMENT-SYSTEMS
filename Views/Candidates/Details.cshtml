@@ -1,0 +1,47 @@
+﻿@model HospitalRecruitmentSystem.Models.Candidate
+
+@{
+    ViewData["Title"] = "Candidate Profile";
+}
+
+<h2>Candidate Profile</h2>
+
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h4>@Model.FullName</h4>
+        <span class="badge bg-primary">@Model.ApplicationStatus</span>
+    </div>
+
+    <div class="card-body">
+        <h5>Personal Information</h5>
+        <p><strong>Candidate Code:</strong> @Model.CandidateCode</p>
+        <p><strong>Full Name:</strong> @Model.FullName</p>
+        <p><strong>Age:</strong> @Model.Age</p>
+        <p><strong>Gender:</strong> @Model.Gender</p>
+        <p><strong>Religion:</strong> @Model.Religion</p>
+        <p><strong>Caste:</strong> @Model.Caste</p>
+        <p><strong>Place:</strong> @Model.Place</p>
+
+        <hr />
+
+        <h5>Contact Information</h5>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Phone:</strong> @Model.Phone</p>
+
+        <hr />
+
+        <h5>Education & Experience</h5>
+        <p><strong>Qualification:</strong> @Model.Qualification</p>
+        <p><strong>Experience:</strong> @Model.ExperienceYears years</p>
+        <p><strong>Last Organization:</strong> @Model.LastWorkedOrganization</p>
+
+        <hr />
+
+        <h5>Application Information</h5>
+        <p><strong>Applied Position:</strong> @Model.AppliedPosition</p>
+        <p><strong>Department:</strong> @Model.Department?.DepartmentName</p>
+        <p><strong>Application Date:</strong> @Model.AppliedOn.ToString("dd-MM-yyyy")</p>
+
+        <a asp-action="Index" class="btn btn-secondary">Back to Candidates</a>
+    </div>
+</div>

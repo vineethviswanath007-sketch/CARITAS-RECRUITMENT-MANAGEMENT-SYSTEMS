@@ -1,0 +1,109 @@
+﻿@model HospitalRecruitmentSystem.Models.Department
+
+@{
+    ViewData["Title"] = "Department Details";
+}
+
+<div class="container py-4">
+
+    <div class="mb-4">
+        <h2 class="fw-bold">Department Details</h2>
+        <p class="text-muted">
+            View complete hospital department information
+        </p>
+    </div>
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body p-4">
+
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+                    <label class="text-muted">
+                        Department Code
+                    </label>
+                    <h5>@Model.DepartmentCode</h5>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="text-muted">
+                        Department Name
+                    </label>
+                    <h5>@Model.DepartmentName</h5>
+                </div>
+
+            </div>
+
+            <hr />
+
+            <div class="mb-3">
+                <label class="text-muted">
+                    Description
+                </label>
+
+                <p>
+                    @(Model.Description ?? "-")
+                </p>
+            </div>
+
+            <hr />
+
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+
+                    <label class="text-muted">
+                        Department Status
+                    </label>
+
+                    <div>
+                        @if (Model.IsActive)
+                        {
+                            <span class="badge bg-success">
+                                Active
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">
+                                Inactive
+                            </span>
+                        }
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="text-muted">
+                        Created Date
+                    </label>
+
+                    <p>
+                        @Model.CreatedOn.ToLocalTime()
+                        .ToString("dd MMM yyyy")
+                    </p>
+
+                </div>
+
+            </div>
+
+            <hr />
+
+            <a asp-action="Edit"
+               asp-route-id="@Model.Id"
+               class="btn btn-primary">
+                Edit Department
+            </a>
+
+            <a asp-action="Index"
+               class="btn btn-outline-secondary ms-2">
+                Back to Departments
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

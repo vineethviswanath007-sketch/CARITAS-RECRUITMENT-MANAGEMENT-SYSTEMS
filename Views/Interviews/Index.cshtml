@@ -1,0 +1,40 @@
+﻿@model IEnumerable<HospitalRecruitmentSystem.Models.Interview>
+
+<h2>Interview Management</h2>
+
+<p>Schedule and manage hospital candidate interviews.</p>
+
+<a href="/Interviews/Create" class="btn btn-primary">
+    Schedule Interview
+</a>
+
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Candidate</th>
+            <th>Interview Date</th>
+            <th>Mode</th>
+            <th>Round</th>
+            <th>Result</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Candidate?.FullName</td>
+                <td>@item.InterviewDate.ToString("dd-MM-yyyy hh:mm tt")</td>
+                <td>@item.InterviewMode</td>
+                <td>@item.InterviewRound</td>
+                <td>@item.InterviewResult</td>
+                <td>
+                    <a href="/Interviews/Details/@item.Id">View</a>
+                    <a href="/Interviews/Evaluation/@item.Id">
+    Evaluate
+</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,21 @@
+﻿@model HospitalRecruitmentSystem.Models.Interview
+
+<h2>Interview Details</h2>
+
+<hr />
+
+<p><strong>Candidate:</strong> @Model.Candidate?.FullName</p>
+
+<p><strong>Interview Date:</strong> @Model.InterviewDate.ToString("dd-MM-yyyy hh:mm tt")</p>
+
+<p><strong>Interview Mode:</strong> @Model.InterviewMode</p>
+
+<p><strong>Interview Round:</strong> @Model.InterviewRound</p>
+
+<p><strong>Interview Panel:</strong> @Model.InterviewPanel</p>
+
+<p><strong>Remarks:</strong> @Model.Remarks</p>
+
+<p><strong>Result:</strong> @Model.InterviewResult</p>
+
+<a href="/Interviews/Index">Back to Interviews</a>

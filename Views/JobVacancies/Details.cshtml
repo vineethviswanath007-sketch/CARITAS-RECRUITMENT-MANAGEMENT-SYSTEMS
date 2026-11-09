@@ -1,0 +1,58 @@
+﻿@model HospitalRecruitmentSystem.Models.JobVacancy
+
+@{
+    ViewData["Title"] = "Job Vacancy Details";
+}
+
+<h2>Job Vacancy Details</h2>
+
+<div class="card p-4">
+
+    <dl class="row">
+
+        <dt class="col-sm-3">Job Code</dt>
+        <dd class="col-sm-9">@Model.JobCode</dd>
+
+        <dt class="col-sm-3">Job Title</dt>
+        <dd class="col-sm-9">@Model.JobTitle</dd>
+
+        <dt class="col-sm-3">Department</dt>
+        <dd class="col-sm-9">@Model.Department?.DepartmentName</dd>
+
+        <dt class="col-sm-3">Job Description</dt>
+        <dd class="col-sm-9">@Model.JobDescription</dd>
+
+        <dt class="col-sm-3">Qualification</dt>
+        <dd class="col-sm-9">@Model.Qualification</dd>
+
+        <dt class="col-sm-3">Experience Required</dt>
+        <dd class="col-sm-9">@Model.ExperienceRequired years</dd>
+
+        <dt class="col-sm-3">Number of Vacancies</dt>
+        <dd class="col-sm-9">@Model.NumberOfVacancies</dd>
+
+        <dt class="col-sm-3">Employment Type</dt>
+        <dd class="col-sm-9">@Model.EmploymentType</dd>
+
+        <dt class="col-sm-3">Salary Range</dt>
+        <dd class="col-sm-9">@Model.SalaryRange</dd>
+
+        <dt class="col-sm-3">Posted Date</dt>
+        <dd class="col-sm-9">@Model.PostedDate.ToString("dd-MM-yyyy")</dd>
+
+        <dt class="col-sm-3">Closing Date</dt>
+        <dd class="col-sm-9">@Model.ClosingDate.ToString("dd-MM-yyyy")</dd>
+
+        <dt class="col-sm-3">Status</dt>
+        <dd class="col-sm-9">@(Model.IsActive ? "Active" : "Inactive")</dd>
+
+    </dl>
+
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id"
+           class="btn btn-primary">Edit</a>
+
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+
+</div>

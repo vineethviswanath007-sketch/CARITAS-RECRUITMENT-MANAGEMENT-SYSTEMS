@@ -1,0 +1,101 @@
+﻿@model IEnumerable<HospitalRecruitmentSystem.Models.Candidate>
+
+@{
+    ViewData["Title"] = "Candidate Management";
+}
+
+<h2>Candidate Management</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">+ Add Candidate</a>
+</p>
+
+<form asp-action="Index" method="get" class="row g-2 mb-3">
+
+    <div class="col-md-4">
+        <input type="text"
+               name="searchString"
+               value="@ViewBag.SearchString"
+               class="form-control"
+               placeholder="Search name, email or phone" />
+    </div>
+
+    <div class="col-md-3">
+        <select name="departmentId" class="form-select">
+            <option value="">All Departments</option>
+            @foreach (var dept in ViewBag.Departments)
+            {
+                <option value="@dept.Id"
+                        selected="@(ViewBag.SelectedDepartment != null && (int)ViewBag.SelectedDepartment == dept.Id)">
+                    @dept.DepartmentName
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <select name="status" class="form-select">
+            <option value="">All Statuses</option>
+            <option value="Applied">Applied</option>
+            <option value="Shortlisted">Shortlisted</option>
+            <option value="Interviewed">Interviewed</option>
+            <option value="Selected">Selected</option>
+            <option value="Rejected">Rejected</option>
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-success">Search</button>
+        <a asp-action="Index" class="btn btn-secondary">Reset</a>
+    </div>
+
+</form>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Candidate Code</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Position</th>
+            <th>Department</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var candidate in Model)
+        {
+            <tr>
+                <td>@candidate.CandidateCode</td>
+                <td>@candidate.FullName</td>
+                <td>@candidate.Email</td>
+                <td>@candidate.Phone</td>
+                <td>@candidate.AppliedPosition</td>
+                <td>@candidate.Department?.DepartmentName</td>
+                <td>@candidate.ApplicationStatus</td>
+                <td>
+                    <a asp-action="Edit"
+                       asp-route-id="@candidate.Id"
+                       class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-action="Details"
+                       asp-route-id="@candidate.Id"
+                       class="btn btn-info btn-sm">
+                        View
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@candidate.Id"
+                       class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
